@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: actions-runner-controller-webhook
+  namespace: actions-runner-system
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
