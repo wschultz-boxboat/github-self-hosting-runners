@@ -4,6 +4,7 @@ metadata:
   name: webhook-basic-runner
   namespace: actions-runner-system
 spec:
+  replicas: 0
   template:
     spec:
       repository: wschultz-boxboat/self-hosted-runner-tester
@@ -13,12 +14,14 @@ spec:
 apiVersion: actions.summerwind.dev/v1alpha1
 kind: HorizontalRunnerAutoscaler
 metadata:
-  name: webhook-basic-runner
+  name: webhook-basic-runner-autoscaler
+  namespace: actions-runner-system
 spec:
   minReplicas: 0
+  maxReplicas: 10
   scaleTargetRef:
-    kind: RunnerDeployment
-    name: webook-basic-runner
+    #kind: RunnerDeployment
+    name: webhook-basic-runner
   scaleUpTriggers:
     - githubEvent:
         workflowJob: {}
